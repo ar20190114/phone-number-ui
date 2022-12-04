@@ -108,16 +108,19 @@ import { ref, watch } from "vue";
 const number = ref("");
 const doSubmit = ref(false);
 
+// 電話番号が10桁以下の場合に数字を追加
 function addNumber(pushNumber: string) {
   if (number.value.length <= 10) {
     number.value = number.value + pushNumber;
   }
 }
 
+// 電話番号の末尾から一文字削除
 function deleteNumber() {
   number.value = number.value.slice(0, -1);
 }
 
+// doSubmitの活性化をwatchにて判定
 watch(number, (number) => {
   if (number.length == 10 && number[0] == "0") {
     doSubmit.value = true;
